@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../ContactDirectory.php';
 
 use PHPUnit\Framework\TestCase;
 
@@ -10,9 +11,6 @@ class ContactTest extends TestCase
 
     protected function setUp()
     {
-        $faker = Faker\Factory::create();
-
-        // var_dump($faker->realText());
         $this->contacts = [];
     }
 
@@ -37,12 +35,47 @@ class ContactTest extends TestCase
         $this->assertEquals(200, $res->getStatusCode());
     }
 
-    public function it_can_add_a_user_to_the_favourites_list()
+    /**
+     * /usr/local/bin/phpunit --filter it_can_add_a_new_user_to_the_collection description tests/ContactTest.php
+     * @test
+     */
+    public function it_can_add_a_new_user_to_the_collection()
     {
-        
+        // GIVEN 
+        // Existing users 
+        $dataPath = __DIR__ . '/../data/contacts.json';
+        $data = file_get_contents($dataPath);
+
+        // Some data for new record
+        $faker = Faker\Factory::create();
+        $formVars = [
+            'forename'  => $faker->firstName,
+            'surname'   => $faker->lastName,
+            'email'     => $faker->email,
+            'telephone' => $faker->phoneNumber,
+            'address'   => $faker->address,
+        ];
+
+        // WHEN
+        // It's posted
+        $client = new \GuzzleHttp\Client();
+        $res = $client->post('http://localhost:8000/contact/', $formVars);
+
+        // THEN
+        // The user is visible in the collection
+        $users = array_merge(json_decode($data, true), $formVars);
+        $this->assertEquals(200, $res->getStatusCode());
+        // var_dump($dataPath);
+        var_dump(json_encode($users));
+            $directory = new ContactDirectory();
+            $directory->load();
+        $this->assertJsonStringEqualsJsonFile($dataPath, $directory->raw());
+        // Reset back to how it was!
+        file_put_contents($dataPath, $data);
+
     }
 
-    public function it_can_add_a_new_user_to_the_collection()
+    public function it_can_add_a_user_to_the_favourites_list()
     {
 
     }

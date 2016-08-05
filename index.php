@@ -45,23 +45,23 @@
 					<form method="post" class="newContactForm">
 					 	<div class="form-group">
 							<label for="forename">Forename</label>
-							<input type="text" class="form-control" id="forename" required />
+							<input type="text" class="form-control" id="forename" name="forename" required />
 						</div>
 						<div class="form-group">
 							<label for="surname">Surname</label>
-							<input type="text" class="form-control" id="surname" required />
+							<input type="text" class="form-control" id="surname" name="surname" required />
 						</div>
 						<div class="form-group">
 							<label for="email">Email</label>
-							<input type="text" class="form-control" id="email" required />
+							<input type="text" class="form-control" id="email" name="email" required />
 						</div>
 						<div class="form-group">
 							<label for="telephone">Telephone</label>
-							<input type="text" class="form-control" id="telephone" required />
+							<input type="text" class="form-control" id="telephone" name="telephone" required />
 						</div>
 						<div class="form-group">
 							<label for="address">Address</label>
-							<textarea id="address" class="form-control" cols="20" rows="5" required></textarea> 
+							<textarea id="address" name="address" class="form-control" cols="20" rows="5" required></textarea> 
 						</div>
 						<input type="submit" class="btn btn-primary" value="Make it" />
 						<a href="#" data-dismiss="modal" class="btn btn-default">Cancel</a>
