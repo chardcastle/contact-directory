@@ -1,0 +1,21 @@
+Please give a brief overview of how your solution works in this file......
+
+
+
+**************************************************************************
+Build instructions
+ 
+1) Add host record
+2) $cd [DOCUMENT_ROOT] (of project source code)
+3) $composer install
+Open the backend with:
+4) $php -S localhost:8000 router.php
+Run the front end with
+5) $php -S localhost:8800
+
+Test instructions
+
+Run PHPUnit over the test cases
+$/usr/local/bin/phpunit
+
+**************************************************************************

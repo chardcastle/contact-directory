@@ -1,0 +1,16 @@
+{
+    "name": "chrishardcastle/itrm",
+    "description": "Technical test",
+    "require": {
+        "phpunit/phpunit": "^4.1",
+        "fzaninotto/faker": "^1.6",
+        "guzzlehttp/guzzle": "*"
+    },
+    "authors": [
+        {
+            "name": "Chris Hardcastle",
+            "email": "me@chrishardcastle.co.uk"
+        }
+    ],
+    "minimum-stability": "beta"
+}
