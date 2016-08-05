@@ -13,8 +13,11 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
 		case '/':
 			echo "<p>Home</p>";
 			break;
-		case '/contacts':
-			echo "<p>Contacts here</p>";
+		case '/contacts/':
+			header('Content-Type: application/json;charset=UTF-8');
+			$users = file_get_contents(__DIR__ . '/data/contacts.json');
+			echo $users;
+			exit;
 			break;
 		default;
 			echo "<p>Welcome to PHP</p>";

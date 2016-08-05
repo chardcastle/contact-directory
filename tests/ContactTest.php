@@ -12,7 +12,7 @@ class ContactTest extends TestCase
     {
         $faker = Faker\Factory::create();
 
-        var_dump($faker->realText());
+        // var_dump($faker->realText());
         $this->contacts = [];
     }
 
@@ -24,15 +24,22 @@ class ContactTest extends TestCase
     {
         // GIVEN
         // The list of users
-        
+        $dataPath = __DIR__ . '/../data/contacts.json';
+
         // WHEN
         // We visit the list of 
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('GET', 'http://localhost:8000/contacts/');
         
-
+        // THEN 
+        // The list of users is the same
+        $this->assertJsonStringEqualsJsonFile($dataPath, $res->getBody()->getContents());
+        $this->assertEquals(200, $res->getStatusCode());
     }
+
     public function it_can_add_a_user_to_the_favourites_list()
     {
-
+        
     }
 
     public function it_can_add_a_new_user_to_the_collection()
