@@ -30,6 +30,20 @@ class ContactTest extends TestCase
         
 
     }
+    public function it_can_add_a_user_to_the_favourites_list()
+    {
+
+    }
+
+    public function it_can_add_a_new_user_to_the_collection()
+    {
+
+    }
+
+    public function it_can_search_for_a_user()
+    {
+
+    }    
 
     // public function testEmpty()
     // {
