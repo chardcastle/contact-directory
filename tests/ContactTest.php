@@ -69,17 +69,13 @@ class ContactTest extends TestCase
         
         $directory = new ContactDirectory();
         $directory->load();
-        // sleep(5);
-        // var_dump(json_decode($directory->raw(),true));
-        // // $this->assertJsonStringEqualsJsonFile($dataPath, $directory->raw());
-        $result = array_merge(json_decode($directory->raw(),true), [$formVars]);
-        // var_dump(json_encode($result, JSON_PRETTY_PRINT));
-        // var_dump($directory->raw());
-        // // $this->assertJsonStringEqualsJsonString($directory->raw(), $result);
-        // var_dump(json_decode($directory->raw(),true), $result);
-        $this->assertEquals(json_decode($directory->raw(),true), $result);
-        // // Reset back to how it was!
-        // file_put_contents($dataPath, $data);
+        
+        $result = array_merge(json_decode($data,true), [$formVars]);
+        $expected = json_decode($directory->raw(),true);
+
+        $this->assertEquals($expected, $result);
+        // Reset back to how it was!
+        file_put_contents($dataPath, $data);
 
     }
 
