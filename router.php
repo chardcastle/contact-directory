@@ -26,15 +26,19 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
 
 			break;
 		case '/contact/':
+
+			$post = file_get_contents("php://input");
+			parse_str($post, $postData);
+
 			$directory = new ContactDirectory();
 			$directory->load();
-			if ($directory->addContact($_POST))
+			if ($directory->addContact($postData))
 			{
 				header('Content-Type: application/json;charset=UTF-8');
 				echo json_encode(['error' => false, 'message' => 'ok']);
 			} else {
 				header('Content-Type: application/json;charset=UTF-8');
-				echo json_encode(['error' => true, 'message' => 'error saving data']);
+				echo json_encode(['error' => true, 'message' => 'error saving data ' . print_r($postData, true)]);
 			}
 			exit;
 			break;			

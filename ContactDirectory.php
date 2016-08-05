@@ -21,7 +21,13 @@ class ContactDirectory {
 
 	public function save()
 	{
-		return (file_put_contents(__DIR__ . '/data/contacts.json', $this->_contacts) !== FALSE);
+
+		if (empty($this->_contacts))
+		{
+			$this->load();
+		}
+
+		return (file_put_contents(__DIR__ . '/data/contacts.json', json_encode($this->raw(), JSON_PRETTY_PRINT)) !== FALSE);
 	}
 
 	public function search() {}
@@ -32,7 +38,9 @@ class ContactDirectory {
 		{
 			$this->load();
 		}
-		$this->_contacts = array_merge($this->_contacts, $newRecord);
+
+		$this->_contacts = array_merge(json_decode($this->_contacts,true), [$newRecord]);
+
 		return $this;
 	}
 
@@ -54,14 +62,15 @@ class ContactDirectory {
 		}
 
 		// Search for matching param in the source data ($_POST) 
-		foreach ($params as $param => $value)
+		foreach ($sourceData as $param => $value)
 		{
-			if (in_array($param, array_keys($sourceData)))
+			if (in_array($param, $params))
 			{
 				// Remove SQL injections etc... (make safe)
 				$postVars[$param] = filter_var($value, FILTER_SANITIZE_STRING);
 			}
 		}
+		
 		$this->add($postVars);
 		return $this->save();
 	}

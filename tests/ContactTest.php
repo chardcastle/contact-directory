@@ -36,7 +36,7 @@ class ContactTest extends TestCase
     }
 
     /**
-     * /usr/local/bin/phpunit --filter it_can_add_a_new_user_to_the_collection description tests/ContactTest.php
+     * /usr/local/bin/phpunit --filter it_can_add_a_new_user_to_the_collection tests/ContactTest.php
      * @test
      */
     public function it_can_add_a_new_user_to_the_collection()
@@ -59,19 +59,27 @@ class ContactTest extends TestCase
         // WHEN
         // It's posted
         $client = new \GuzzleHttp\Client();
-        $res = $client->post('http://localhost:8000/contact/', $formVars);
+
+        $res = $client->request('POST', 'http://localhost:8000/contact/', ['form_params' => $formVars]);
 
         // THEN
         // The user is visible in the collection
         $users = array_merge(json_decode($data, true), $formVars);
         $this->assertEquals(200, $res->getStatusCode());
-        // var_dump($dataPath);
-        var_dump(json_encode($users));
-            $directory = new ContactDirectory();
-            $directory->load();
-        $this->assertJsonStringEqualsJsonFile($dataPath, $directory->raw());
-        // Reset back to how it was!
-        file_put_contents($dataPath, $data);
+        
+        $directory = new ContactDirectory();
+        $directory->load();
+        // sleep(5);
+        // var_dump(json_decode($directory->raw(),true));
+        // // $this->assertJsonStringEqualsJsonFile($dataPath, $directory->raw());
+        $result = array_merge(json_decode($directory->raw(),true), [$formVars]);
+        // var_dump(json_encode($result, JSON_PRETTY_PRINT));
+        // var_dump($directory->raw());
+        // // $this->assertJsonStringEqualsJsonString($directory->raw(), $result);
+        // var_dump(json_decode($directory->raw(),true), $result);
+        $this->assertEquals(json_decode($directory->raw(),true), $result);
+        // // Reset back to how it was!
+        // file_put_contents($dataPath, $data);
 
     }
 
@@ -83,24 +91,5 @@ class ContactTest extends TestCase
     public function it_can_search_for_a_user()
     {
 
-    }    
-
-    // public function testEmpty()
-    // {
-    //     $this->assertTrue(empty($this->contacts));
-    // }
-
-    // public function testPush()
-    // {
-    //     array_push($this->contacts, 'foo');
-    //     $this->assertEquals('foo', $this->contacts[count($this->contacts)-1]);
-    //     $this->assertFalse(empty($this->contacts));
-    // }
-
-    // public function testPop()
-    // {
-    //     array_push($this->contacts, 'foo');
-    //     $this->assertEquals('foo', array_pop($this->contacts));
-    //     $this->assertTrue(empty($this->contacts));
-    // }
+    } 
 }
