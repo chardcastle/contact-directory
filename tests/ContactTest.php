@@ -122,7 +122,7 @@ class ContactTest extends TestCase
                 'email' => $targetUserEmail
             ]
         ]);
-echo $res->getBody()->getContents();
+
         // THEN
         // The user is present in the favourites collection
         $dataPath = __DIR__ . '/../data/favourites.json';

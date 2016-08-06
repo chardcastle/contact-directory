@@ -92,7 +92,7 @@ app.contactsList = {
 					$('#newContactModal').modal('hide');
 				},
 				error: function(error) {
-					console.error('There was a fail');
+					console.error('There was an error');
 				}
 			})
 			.done(function() {
@@ -107,8 +107,22 @@ app.contactsList = {
 		});
 
 	},
-	
+
 	addToFavourites: function(email) {
-		alert("Adding " + email);
+		
+			$.ajax({
+				method: 'POST',
+				data: {'email' : email},
+				url: 'http://localhost:8000/contact/favourite/',
+				success: function() {
+					alert('Contact added to favourite');
+				},
+				error: function(error) {
+					console.error('There was an error');
+				}
+			})
+			.done(function() {
+				app.contactsList.init();
+			});			
 	}
 }
