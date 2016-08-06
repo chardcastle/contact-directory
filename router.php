@@ -21,6 +21,7 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
 			
 			$directory = new ContactDirectory();
 			header('Content-Type: application/json;charset=UTF-8');
+			header('Access-Control-Allow-Origin: *');
 			echo $directory->raw();
 			exit;
 

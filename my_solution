@@ -3,6 +3,14 @@ Please give a brief overview of how your solution works in this file......
 
 
 **************************************************************************
+
+Set up
+For convenience I've this this test up to run on PHP's built in mini web server.
+
+There's a front end and backend. In the absence of any tokens or authentication, 
+the backend allows cross domain requests. This is also because both sides should be 
+kicked off in isolation as you'll see within the commands below.
+
 Build instructions
  
 1) Add host record

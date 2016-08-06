@@ -75,8 +75,12 @@
 		<div class="left">
 		<h2>Contact List</h2>
 			<ul id="contactList">
-				<li class="contact">
-					<button class="btn btn-default">Add to my favourites</button>
+				<li class="contact tpl hidden">
+					<button class="btn btn-default btn-sm pull-right">Add to my favourites</button>
+					<ol class="no-spacing">
+						<li class="name"></li>
+						<li class="email"></li>
+					</ol>
 				</li>
 			</ul>
 		</div>
@@ -84,15 +88,42 @@
 		<div class="right">
 		<h2>My Favourites</h2>
 			<ul id="myContacts" class="contactList">
-				<li class="contact"></li>
+				<li class="contact tpl hidden">
+					<button class="btn btn-default btn-sm pull-right">Remove from favourites</button>
+					<ol class="no-spacing">
+						<li class="name"></li>
+						<li class="email"></li>
+					</ol>
+				</li>
 			</ul>
 		</div>
-
 	</div>
 </body>
 </html>
 <script type="text/javascript">
 	$(function() {
-
+		// Get all contacts
+		$.ajax({
+			method: 'GET',
+			url: 'http://localhost:8000/contacts/',
+			error: function(error) {
+				console.error('There was a fail');
+			}
+		})
+		.done(function(result) {
+			$(result).each(function(i, item) {		
+				var record = $('#contactList .tpl').clone();
+				record
+				.find('li.name')
+					.text(item.forename + ' ' + item.surname)
+				.end()
+				.find('li.email')
+					.text(item.email)
+				.end()				
+				.removeClass('tpl')
+				.removeClass('hidden')
+				.appendTo('#contactList');
+			});
+		})
 	});
 </script>
