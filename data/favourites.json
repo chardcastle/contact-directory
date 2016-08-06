@@ -5,54 +5,5 @@
         "email": "alphonse.leduc@anemailaddress.com",
         "address": "42 Wallaby Way\nSydney\nAustralia",
         "telephone": "0123 4567 8911"
-    },
-    {
-        "forename": "Hermanigildo",
-        "surname": "Fernandez",
-        "email": "fernandez.h@anemailaddress.com",
-        "address": "26 Grovesnor Gardens\nLondon",
-        "telephone": "0123 4567 8911"
-    },
-    {
-        "forename": "Robert",
-        "surname": "Welch",
-        "email": "rw@groogler.com",
-        "address": "28 Smith Street\nEdingurgh\nUK",
-        "telephone": "05746 37485938"
-    },
-    {
-        "forename": "Jerrod",
-        "surname": "Moore",
-        "email": "mhowell@pfannerstill.com",
-        "telephone": "304-391-8362",
-        "address": "8362 Hand Stravenue\nNorth Alvera, ME 00154"
-    },
-    {
-        "forename": "Sarah",
-        "surname": "Montague",
-        "email": "smont@anemailaddress.com",
-        "address": "13 Street Lane\nSurbiton\nUK",
-        "telephone": "0958 4938 5941"
-    },
-    {
-        "forename": "Chris",
-        "surname": "Hardcastle",
-        "email": "fdsafsd",
-        "telephone": "fdsafsd",
-        "address": "Net Efficiency Ltd\r\n55 Islington Park Street"
-    },
-    {
-        "forename": "Ayana",
-        "surname": "Carter",
-        "email": "emerson.paucek@yahoo.com",
-        "telephone": "863.455.6685 x95168",
-        "address": "19025 Derek Hills Suite 444\nLake Melody, IL 66654"
-    },
-    {
-        "forename": "Ethel",
-        "surname": "Lemke",
-        "email": "britney.corwin@mccullough.com",
-        "telephone": "239.696.4001",
-        "address": "59956 Karina Street Suite 024\nLake Gabriel, VT 79389"
     }
 ]

@@ -77,6 +77,16 @@ app.contactsList = {
 			});
 		})		
 	},
+	findContact: function(str) {
+		
+		$('#contactList li.contact').removeClass('search-result');
+		if ($('#contactList li:contains('+str+')').length && str.length > 3)
+		{
+			$('#contactList li:contains('+str+')').each(function(i, item){
+				$(item).closest('.contact').addClass('search-result');
+			})
+		}
+	},
 	addEvents: function()
 	{
 		// Handle creation of new contacts
@@ -105,6 +115,14 @@ app.contactsList = {
 		$('#newContactModal').on('hidden.bs.modal', function () {
 		  $('#newContactModal input:not(.btn), #newContactModal textarea').val('');
 		});
+
+		// Look up / filter for contact
+		var timeoutID = null;
+		$('#lookup').keyup(function() {
+			clearTimeout(timeoutID);
+			var $target = $(this);
+			timeoutID = setTimeout(function() { app.contactsList.findContact($target.val()); }, 500); 
+		});		
 
 	},
 

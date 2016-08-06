@@ -29,8 +29,14 @@ ul,li {
 }
 .contact,
 .favourite {
-	padding: 0 15px 15px 0;
+	padding: 0 5px 5px 0;
 }
 .contact ol {
 	overflow: hidden;
+}
+.contact .inner {
+	padding: 5px;
+}
+.contact.search-result .inner{
+	background: Orange;
 }
