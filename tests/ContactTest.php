@@ -81,7 +81,6 @@ class ContactTest extends TestCase
         // WHEN
         // It's posted
         $client = new \GuzzleHttp\Client();
-
         $res = $client->request('POST', 'http://localhost:8000/contact/', ['form_params' => $formVars]);
 
         // THEN
@@ -101,13 +100,43 @@ class ContactTest extends TestCase
 
     }
 
+    /**
+     * /usr/local/bin/phpunit --filter it_can_add_a_user_to_the_favourites_list tests/ContactTest.php
+     * @test
+     */
     public function it_can_add_a_user_to_the_favourites_list()
     {
+        // GIVEN
+        // A user in the contacts list
+        $dataPath = __DIR__ . '/../data/contacts.json';
+        $data = file_get_contents($dataPath);
+        $data = json_decode($data, true);
+        $user = array_rand($data, 1);
+        $targetUserEmail = $data[$user]['email'];
 
+        // WHEN
+        // The users email address is posted to end point
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('POST', 'http://localhost:8000/contact/favourite', [
+            'form_params' => [
+                'email' => $targetUserEmail
+            ]
+        ]);
+
+        // THEN
+        // The user is present in the favourites collection
+        $dataPath = __DIR__ . '/../data/favourites.json';
+        $data = file_get_contents($dataPath);
+        $data = json_decode($data, true);
+        foreach ($data as $user)
+        {
+            if ($user['email'] === $targetUserEmail)
+            {
+                $this->pass("Found user in favourites");
+            }
+        }
+        $this->fail("Couldn't find user in favourite list");
+        
     }
 
-    public function it_can_search_for_a_user()
-    {
-
-    } 
 }
