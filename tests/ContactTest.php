@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../ContactDirectory.php';
+require_once __DIR__ . '/../Favourite.php';
 
 use PHPUnit\Framework\TestCase;
 
@@ -15,10 +16,10 @@ class ContactTest extends TestCase
     }
 
     /**
-     * /usr/local/bin/phpunit --filter it_can_list_users_from_the_contacts_file description tests/ContactTest.php
+     * /usr/local/bin/phpunit --filter it_can_list_users_from_contacts description tests/ContactTest.php
      * @test
      */
-    public function it_can_list_users_from_the_contacts_file()
+    public function it_can_list_users_from_contacts()
     {
         // GIVEN
         // The list of users
@@ -34,6 +35,27 @@ class ContactTest extends TestCase
         $this->assertJsonStringEqualsJsonFile($dataPath, $res->getBody()->getContents());
         $this->assertEquals(200, $res->getStatusCode());
     }
+
+    /**
+     * /usr/local/bin/phpunit --filter it_can_list_users_from_favourites description tests/ContactTest.php
+     * @test
+     */
+    public function it_can_list_users_from_favourites()
+    {
+        // GIVEN
+        // The list of users
+        $dataPath = __DIR__ . '/../data/favourites.json';
+
+        // WHEN
+        // We visit the list of 
+        $client = new \GuzzleHttp\Client();
+        $res = $client->request('GET', 'http://localhost:8000/contacts/favourites/');
+        
+        // THEN 
+        // The list of users is the same
+        $this->assertJsonStringEqualsJsonFile($dataPath, $res->getBody()->getContents());
+        $this->assertEquals(200, $res->getStatusCode());
+    }    
 
     /**
      * /usr/local/bin/phpunit --filter it_can_add_a_new_user_to_the_collection tests/ContactTest.php

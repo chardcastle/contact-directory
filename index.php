@@ -87,8 +87,8 @@
 
 		<div class="right">
 		<h2>My Favourites</h2>
-			<ul id="myContacts" class="contactList">
-				<li class="contact tpl hidden">
+			<ul id="favouriteList">
+				<li class="favourite tpl hidden">
 					<button class="btn btn-default btn-sm pull-right">Remove from favourites</button>
 					<ol class="no-spacing">
 						<li class="name"></li>
@@ -103,15 +103,27 @@
 <script type="text/javascript">
 	$(function() {
 		// Get all contacts
-		$.ajax({
+		var contacts = $.ajax({
 			method: 'GET',
 			url: 'http://localhost:8000/contacts/',
 			error: function(error) {
 				console.error('There was a fail');
 			}
-		})
-		.done(function(result) {
-			$(result).each(function(i, item) {		
+		});
+		var favourites = $.ajax({
+			method: 'GET',
+			url: 'http://localhost:8000/contacts/favourites/',
+			error: function(error) {
+				console.error('There was a fail');
+			}
+		});
+
+		// When both ajax requests have finished loading
+		$.when(contacts, favourites)
+		.then(function(contacts, favourites) {
+			// Popuplate contacts list
+			$(contacts[0]).each(function(i, item) {
+				console.log(item);	
 				var record = $('#contactList .tpl').clone();
 				record
 				.find('li.name')
@@ -124,6 +136,21 @@
 				.removeClass('hidden')
 				.appendTo('#contactList');
 			});
+			// Popuplate favourites list
+			$(favourites[0]).each(function(i, item) {
+				console.log(item);	
+				var record = $('#favouriteList .tpl').clone();
+				record
+				.find('li.name')
+					.text(item.forename + ' ' + item.surname)
+				.end()
+				.find('li.email')
+					.text(item.email)
+				.end()				
+				.removeClass('tpl')
+				.removeClass('hidden')
+				.appendTo('#favouriteList');
+			});			
 		})
 	});
 </script>

@@ -3,6 +3,7 @@ ini_set("display_errors", "on");
 error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 
 require_once getcwd()."/ContactDirectory.php";
+require_once getcwd()."/Favourite.php";
 
 
 /**
@@ -26,6 +27,15 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
 			exit;
 
 			break;
+		case '/contacts/favourites/':
+			
+			$favourites = new Favourite();
+			header('Content-Type: application/json;charset=UTF-8');
+			header('Access-Control-Allow-Origin: *');
+			echo $favourites->raw();
+			exit;
+
+			break;			
 		case '/contact/':
 
 			$post = file_get_contents("php://input");
