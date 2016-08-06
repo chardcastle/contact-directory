@@ -39,7 +39,10 @@ class ContactDirectory {
 			$this->load();
 		}
 
-		$this->_contacts = array_merge(json_decode($this->_contacts,true), [$newRecord]);
+		if ( ! empty($newRecord))
+		{
+			$this->_contacts = array_merge(json_decode($this->_contacts,true), [$newRecord]);	
+		}
 
 		return $this;
 	}

@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/ContactDirectory.php';
+
 class Favourite {
 	
 	private $_favourites;
@@ -37,9 +39,29 @@ class Favourite {
 			$this->load();
 		}
 
-		$this->_favourites = array_merge(json_decode($this->_favourites,true), [$newRecord]);
-
+		if ( ! empty($newRecord))
+		{
+			$this->_favourites = array_merge(json_decode($this->_favourites,true), [$newRecord]);	
+		}
+		
 		return $this;
+	}
+
+	public function addFromContactDirectory(ContactDirectory $directory, $postData)
+	{
+		// Search for matching user in contact directory
+		$userData = json_decode($directory->raw());
+		$targetUser = array_filter($userData, function($user, $i) use ($postData) {
+			// var_dump('Comparing ' . $user->email . ' to ' . $postData['email']);
+			return ($user->email === $postData['email']);
+		}, ARRAY_FILTER_USE_BOTH);
+
+		// Get first (incase there's many records against same email)
+		$user = array_shift($targetUser);
+		$this->add((array)$user);
+
+		return $this->save();
+
 	}
 
 

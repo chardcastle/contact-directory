@@ -117,25 +117,19 @@ class ContactTest extends TestCase
         // WHEN
         // The users email address is posted to end point
         $client = new \GuzzleHttp\Client();
-        $res = $client->request('POST', 'http://localhost:8000/contact/favourite', [
+        $res = $client->request('POST', 'http://localhost:8000/contact/favourite/', [
             'form_params' => [
                 'email' => $targetUserEmail
             ]
         ]);
-
+echo $res->getBody()->getContents();
         // THEN
         // The user is present in the favourites collection
         $dataPath = __DIR__ . '/../data/favourites.json';
         $data = file_get_contents($dataPath);
         $data = json_decode($data, true);
-        foreach ($data as $user)
-        {
-            if ($user['email'] === $targetUserEmail)
-            {
-                $this->pass("Found user in favourites");
-            }
-        }
-        $this->fail("Couldn't find user in favourite list");
+
+        $this->assertContains($targetUserEmail, array_column($data, 'email'));
         
     }
 
