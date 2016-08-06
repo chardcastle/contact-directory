@@ -82,13 +82,13 @@
 		<h2>Contact List</h2>
 			<ul id="contactList">
 				<li class="contact tpl hidden">
-					<div class="inner">
+					<!-- <div class="inner"> -->
 						<button class="btn btn-default btn-sm pull-right">Add to my favourites</button>
 						<ol class="no-spacing">
 							<li class="name"></li>
 							<li class="email"></li>
 						</ol>
-					</div>
+					<!-- </div> -->
 				</li>
 			</ul>
 		</div>

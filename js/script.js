@@ -79,12 +79,19 @@ app.contactsList = {
 	},
 	findContact: function(str) {
 		
-		$('#contactList li.contact').removeClass('search-result');
+		// $('#contactList li.contact').removeClass('search-result');
 		if ($('#contactList li:contains('+str+')').length && str.length > 3)
 		{
-			$('#contactList li:contains('+str+')').each(function(i, item){
-				$(item).closest('.contact').addClass('search-result');
-			})
+			$('#contactList')
+			.find('li')
+				.addClass('hidden')
+			.end()
+			.find('li:contains('+str+')').filter(':not(.tpl)').each(function(i, item){
+				// $(item).closest('.contact').addClass('search-result');
+				$(item).removeClass('hidden');
+			});
+		} else {
+			$('#contactList').find('li:not(.tpl)').removeClass('hidden');
 		}
 	},
 	addEvents: function()
