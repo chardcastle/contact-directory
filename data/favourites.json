@@ -5,19 +5,5 @@
         "email": "alphonse.leduc@anemailaddress.com",
         "address": "42 Wallaby Way\nSydney\nAustralia",
         "telephone": "0123 4567 8911"
-    },
-    {
-        "forename": "Lucy",
-        "surname": "Smith",
-        "email": "smith@smith-lucy.com",
-        "address": "254 High Street\nOrpington\nKent",
-        "telephone": "07858 5458 9695"
-    },
-    {
-        "forename": "Ayana",
-        "surname": "Carter",
-        "email": "emerson.paucek@yahoo.com",
-        "telephone": "863.455.6685 x95168",
-        "address": "19025 Derek Hills Suite 444\nLake Melody, IL 66654"
     }
 ]

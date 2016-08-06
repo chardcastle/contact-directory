@@ -41,45 +41,45 @@
 		</div>
 		<div class="newContact">
 			<div class="modal fade" id="newContactModal" tabindex="-1" role="dialog" aria-labelledby="newContact">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="myModalLabel">Create a new contact</h4>
-			      </div>
-			      <div class="modal-body">
-					<form method="post" class="newContactForm" enctype="multipart/form-data">
-					 	<div class="form-group">
-							<label for="forename">Forename</label>
-							<input type="text" class="form-control" id="forename" name="forename" required />
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Create a new contact</h4>
+					</div>
+					<div class="modal-body">
+						<form method="post" class="newContactForm" enctype="multipart/form-data">
+							<div class="form-group">
+								<label for="forename">Forename</label>
+								<input type="text" class="form-control" id="forename" name="forename" required />
+							</div>
+							<div class="form-group">
+								<label for="surname">Surname</label>
+								<input type="text" class="form-control" id="surname" name="surname" required />
+							</div>
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="text" class="form-control" id="email" name="email" required />
+							</div>
+							<div class="form-group">
+								<label for="telephone">Telephone</label>
+								<input type="text" class="form-control" id="telephone" name="telephone" required />
+							</div>
+							<div class="form-group">
+								<label for="address">Address</label>
+								<textarea id="address" name="address" class="form-control" cols="20" rows="5" required></textarea> 
+							</div>
+							<input type="submit" class="btn btn-primary" value="Make it" />
+							<a href="#" data-dismiss="modal" class="btn btn-default">Cancel</a>
+							</form>
 						</div>
-						<div class="form-group">
-							<label for="surname">Surname</label>
-							<input type="text" class="form-control" id="surname" name="surname" required />
-						</div>
-						<div class="form-group">
-							<label for="email">Email</label>
-							<input type="text" class="form-control" id="email" name="email" required />
-						</div>
-						<div class="form-group">
-							<label for="telephone">Telephone</label>
-							<input type="text" class="form-control" id="telephone" name="telephone" required />
-						</div>
-						<div class="form-group">
-							<label for="address">Address</label>
-							<textarea id="address" name="address" class="form-control" cols="20" rows="5" required></textarea> 
-						</div>
-						<input type="submit" class="btn btn-primary" value="Make it" />
-						<a href="#" data-dismiss="modal" class="btn btn-default">Cancel</a>
-					</form>
+					</div>
 				</div>
-			</div>
-			</div>
 			</div>
 		</div>
 
 		<div class="left">
-		<h2>Contact List</h2>
+			<h2>Contact List</h2>
 			<ul id="contactList">
 				<li class="contact tpl hidden">
 					<!-- <div class="inner"> -->
@@ -94,7 +94,7 @@
 		</div>
 
 		<div class="right">
-		<h2>My Favourites</h2>
+			<h2>My Favourites</h2>
 			<ul id="favouriteList">
 				<li class="favourite tpl hidden">
 					<span class="glyphicon glyphicon-star pull-left" aria-hidden="true"></span>
@@ -107,7 +107,15 @@
 				</li>
 			</ul>
 		</div>
+
+		<div class="footer">
+			<div class="inner">
+				<h5>Make Chris your favourite and hire him for your team!</h5>
+				<p>Chris Hardcastle | <a href="http://www.chrishardcastle.co.uk">www.chrishardcastle.co.uk</a> | August 2016</p>
+			</div>
+		</div>		
 	</div>
+
 </body>
 </html>
 <script type="text/javascript">

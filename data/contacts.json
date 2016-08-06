@@ -61,5 +61,12 @@
         "email": "fdsafsd",
         "telephone": "fdsafsd",
         "address": "Net Efficiency Ltd\r\n55 Islington Park Street"
+    },
+    {
+        "forename": "John",
+        "surname": "Smith",
+        "email": "foo@example.com",
+        "telephone": "018343232",
+        "address": "Hello world"
     }
 ]

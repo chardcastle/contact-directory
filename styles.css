@@ -6,6 +6,17 @@
 .hidden {
 	display:none;
 }
+.footer {
+	width: 100%;
+	clear: both;
+	border-top: 1px solid #ccc;
+	height: 120px;
+	position: relative;
+}
+.footer .inner {
+	position: absolute;
+	bottom: 10px;
+}
 .left {
 	float:left;
 	clear:left;
