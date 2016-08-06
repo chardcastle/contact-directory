@@ -109,20 +109,27 @@ app.contactsList = {
 	},
 
 	addToFavourites: function(email) {
-		
-			$.ajax({
-				method: 'POST',
-				data: {'email' : email},
-				url: 'http://localhost:8000/contact/favourite/',
-				success: function() {
-					alert('Contact added to favourite');
-				},
-				error: function(error) {
-					console.error('There was an error');
+
+		$.ajax({
+			method: 'POST',
+			data: {'email' : email},
+			url: 'http://localhost:8000/contact/favourite/',
+			success: function(response) {
+
+				if (response.error === false)
+				{
+					alert('Contact added to favourite');	
+				} else {
+					alert(response.message);
 				}
-			})
-			.done(function() {
-				app.contactsList.init();
-			});			
+				
+			},
+			error: function(error) {
+				console.error('There was an error');
+			}
+		})
+		.done(function() {
+			app.contactsList.init();
+		});			
 	}
 }

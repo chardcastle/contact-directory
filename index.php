@@ -26,14 +26,20 @@
 </head>
 <body>
 	<div class="container">
-		<h1>My Directory</h1>
+
+		<div class="left">
+			<h1>My Directory</h1>
+		</div>
+		<div class="right">
+			<a href="#" id="newContact" class="btn btn-default pull-right" data-toggle="modal" data-target="#newContactModal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Create a new contact</a>
+		</div>
+
 		<div id="search">
 			<div class="form-group">
 				<input type="text" class="form-control" name="lookup" id="lookup" class="lookup" placeholder="search for a contact" />
 			</div>
 		</div>
 		<div class="newContact">
-			<a href="#" id="newContact" class="btn btn-default" data-toggle="modal" data-target="#newContactModal">Create a new contact</a>
 			<div class="modal fade" id="newContactModal" tabindex="-1" role="dialog" aria-labelledby="newContact">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
@@ -89,7 +95,9 @@
 		<h2>My Favourites</h2>
 			<ul id="favouriteList">
 				<li class="favourite tpl hidden">
-					<button class="btn btn-default btn-sm pull-right">Remove from favourites</button>
+					<span class="glyphicon glyphicon-star pull-left" aria-hidden="true"></span>
+					<!-- I'd recommend providing a remove from contacts feature -->
+					<!-- <button class="btn btn-default btn-sm pull-right">Remove from favourites</button> -->
 					<ol class="no-spacing">
 						<li class="name"></li>
 						<li class="email"></li>

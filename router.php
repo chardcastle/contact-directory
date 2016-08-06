@@ -69,7 +69,7 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
 			{
 				echo json_encode(['error' => false, 'message' => 'ok']);
 			} else {
-				echo json_encode(['error' => true, 'message' => 'error adding as a favourite ' . print_r($postData, true)]);
+				echo json_encode(['error' => true, 'message' => "User wasn't added as a favourite"]);
 			}
 			break;
 

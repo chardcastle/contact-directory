@@ -61,15 +61,18 @@ class Favourite {
 
 		$exists = array_filter(json_decode($this->raw()), function($favourite, $i)  use ($postData) {
 			return ($favourite->email === $postData['email']);
-		});
+		}, ARRAY_FILTER_USE_BOTH);
 
 		if ( ! $exists)
 		{
 			$this->add((array)$user);	
-		}
-		
+			return $this->save();
 
-		return $this->save();
+		} else {
+
+			// Duplication with favourites was avoided
+			return false;
+		}
 
 	}
 

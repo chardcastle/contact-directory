@@ -24,7 +24,11 @@ ul,li {
 	margin: 0;
 	padding: 0;
 }
-.contact {
+#newContact {
+	margin-top: 20px;
+}
+.contact,
+.favourite {
 	padding: 0 15px 15px 0;
 }
 .contact ol {
