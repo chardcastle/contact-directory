@@ -42,7 +42,7 @@
 			        <h4 class="modal-title" id="myModalLabel">Create a new contact</h4>
 			      </div>
 			      <div class="modal-body">
-					<form method="post" class="newContactForm">
+					<form method="post" class="newContactForm" enctype="multipart/form-data">
 					 	<div class="form-group">
 							<label for="forename">Forename</label>
 							<input type="text" class="form-control" id="forename" name="forename" required />
@@ -102,55 +102,7 @@
 </html>
 <script type="text/javascript">
 	$(function() {
-		// Get all contacts
-		var contacts = $.ajax({
-			method: 'GET',
-			url: 'http://localhost:8000/contacts/',
-			error: function(error) {
-				console.error('There was a fail');
-			}
-		});
-		var favourites = $.ajax({
-			method: 'GET',
-			url: 'http://localhost:8000/contacts/favourites/',
-			error: function(error) {
-				console.error('There was a fail');
-			}
-		});
-
-		// When both ajax requests have finished loading
-		$.when(contacts, favourites)
-		.then(function(contacts, favourites) {
-			// Popuplate contacts list
-			$(contacts[0]).each(function(i, item) {
-				console.log(item);	
-				var record = $('#contactList .tpl').clone();
-				record
-				.find('li.name')
-					.text(item.forename + ' ' + item.surname)
-				.end()
-				.find('li.email')
-					.text(item.email)
-				.end()				
-				.removeClass('tpl')
-				.removeClass('hidden')
-				.appendTo('#contactList');
-			});
-			// Popuplate favourites list
-			$(favourites[0]).each(function(i, item) {
-				console.log(item);	
-				var record = $('#favouriteList .tpl').clone();
-				record
-				.find('li.name')
-					.text(item.forename + ' ' + item.surname)
-				.end()
-				.find('li.email')
-					.text(item.email)
-				.end()				
-				.removeClass('tpl')
-				.removeClass('hidden')
-				.appendTo('#favouriteList');
-			});			
-		})
+		app.contactsList.init();
+		app.contactsList.addEvents();
 	});
 </script>

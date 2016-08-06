@@ -38,6 +38,9 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
 			break;			
 		case '/contact/':
 
+			header('Content-Type: application/json;charset=UTF-8');
+			header('Access-Control-Allow-Origin: *');
+
 			$post = file_get_contents("php://input");
 			parse_str($post, $postData);
 
@@ -45,10 +48,8 @@ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
 			$directory->load();
 			if ($directory->addContact($postData))
 			{
-				header('Content-Type: application/json;charset=UTF-8');
 				echo json_encode(['error' => false, 'message' => 'ok']);
 			} else {
-				header('Content-Type: application/json;charset=UTF-8');
 				echo json_encode(['error' => true, 'message' => 'error saving data ' . print_r($postData, true)]);
 			}
 			exit;
