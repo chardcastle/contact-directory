@@ -58,7 +58,16 @@ class Favourite {
 
 		// Get first (incase there's many records against same email)
 		$user = array_shift($targetUser);
-		$this->add((array)$user);
+
+		$exists = array_filter(json_decode($this->raw()), function($favourite, $i)  use ($postData) {
+			return ($favourite->email === $postData['email']);
+		});
+
+		if ( ! $exists)
+		{
+			$this->add((array)$user);	
+		}
+		
 
 		return $this->save();
 
